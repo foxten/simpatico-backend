@@ -3,7 +3,7 @@ class GoalsController < ApplicationController
     def create
         goal = Goal.create(goal_params)
         UserGroupGoal.create(goal_id: goal.id, user_id: current_user.id)
-        render json: goal
+        render json: goal, :include => {:user_group_goal => {:only => :id}}
     end
 
     def update
@@ -20,6 +20,6 @@ class GoalsController < ApplicationController
 
     private
     def goal_params
-        params.require(:goal).permit(:title, :deadline, :private, :multi_user)
+        params.require(:goal).permit(:title, :deadline, :publicly_viewable, :multi_user)
     end
 end

@@ -1,3 +1,3 @@
 class GoalSerializer < ActiveModel::Serializer
-  attributes :id, :title, :deadline, :private, :multi_user
+  attributes :id, :title, :deadline, :publicly_viewable, :multi_user
 end

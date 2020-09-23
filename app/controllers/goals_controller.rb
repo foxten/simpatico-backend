@@ -1,9 +1,16 @@
 class GoalsController < ApplicationController
     # BUILD - NEW/CREATE/EDIT/UPDATE/DELETE
+    skip_before_action :authorized 
+    def show
+        goal = Goal.find(params[:id])
+        render json: goal
+    end
+    # BUILD - NEW/CREATE/EDIT/UPDATE/DELETE
+    
     def create
         goal = Goal.create(goal_params)
         UserGroupGoal.create(goal_id: goal.id, user_id: current_user.id)
-        render json: goal, :include => {:user_group_goal => {:only => :id}}
+        render json: goal
     end
 
     def update

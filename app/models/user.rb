@@ -10,6 +10,7 @@ class User < ApplicationRecord
     has_many :friend_bs, through: :friendships, source: :friend_b
     has_many :user_group_goals
     has_many :goals, through: :user_group_goals
+    has_many :alerts
 
     def friends
         (friend_as + friend_bs).select{ |friend|

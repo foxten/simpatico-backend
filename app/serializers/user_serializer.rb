@@ -1,5 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :email_address, :password_digest, :mygoals, :friends
+  attributes :id, :username, :first_name, :email_address, :password_digest, :mygoals, :friends, :friend_requests
+  has_many :alerts
 
   def mygoals
     info = []

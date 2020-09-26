@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :alerts
   resources :friend_requests
   resources :friendships
   resources :markers

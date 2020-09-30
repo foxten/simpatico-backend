@@ -16,6 +16,11 @@ class AlertsController < ApplicationController
         render json: alert
     end
 
+    def destroy
+        alert = Alert.find(params[:id])
+        alert.destroy
+    end
+
     private
     def alert_params
         params.require(:user_group_goal).permit(:user_id, :goal_id)

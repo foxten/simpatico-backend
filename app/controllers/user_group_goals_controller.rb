@@ -1,7 +1,7 @@
 class UserGroupGoalsController < ApplicationController
     # BUILD - CREATE/UPDATE/DELETE
 
-    skip_before_action :authorized, only: [:create]
+    # skip_before_action :authorized, only: [:create]
 
     def create
         ugg = UserGroupGoal.new
@@ -9,9 +9,7 @@ class UserGroupGoalsController < ApplicationController
             render json: { message: "User Goal already exists" }
         else
             ugg = UserGroupGoal.create(ugg_params)
-                # if ugg.goal.multi_user == true
-                    Alert.create(user_id: ugg.user_id, message: "#{current_user.first_name} has created a new shared goal. ", alertable: ugg)
-                # end
+            Alert.create(user_id: ugg.user_id, message: "#{current_user.first_name} has created a new shared goal. ", alertable: ugg)
             render json: ugg
         end
     end
